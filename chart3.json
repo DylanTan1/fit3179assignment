@@ -30,7 +30,8 @@
     ],
     "mark": {
         "type": "line",
-        "orient": "vertical"
+        "orient": "vertical",
+        "size":10
     },
     "encoding": {
         "x": {
