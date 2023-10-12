@@ -1,0 +1,49 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/DylanTan1/fit3179-w9-hw/main/cleaned.csv"
+    },
+    "title": "Top 10 biggest contributors to global warming",
+    "width": 800,
+    "height": 400,
+    "transform": [
+        {
+            "sort": [
+                {
+                    "field": "temperature_change_from_ghg",
+                    "order": "descending"
+                }
+            ],
+            "window": [
+                {
+                    "op": "rank",
+                    "as": "rank"
+                }
+            ],
+            "groupby": [
+                "year"
+            ]
+        },
+        {
+            "filter": "datum.rank <=10"
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "orient": "vertical"
+    },
+    "encoding": {
+        "x": {
+            "field": "year",
+            "type": "ordinal"
+        },
+        "y": {
+            "field": "rank",
+            "type": "nominal"
+        },
+        "color": {
+            "field": "country",
+            "type": "nominal"
+        }
+    }
+}

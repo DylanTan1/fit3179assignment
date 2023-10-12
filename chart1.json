@@ -1,0 +1,74 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "config": {
+        "background": "lightblue"
+    },
+    "title": "Total greenhouse gas emission in 2021(million tonnes)",
+    "width": 800,
+    "height": 400,
+    "projection": {
+        "type": "equalEarth"
+    },
+    "data": {
+        "url": "https://raw.githubusercontent.com/DylanTan1/fit3179-w9-hw/main/ne_110m.json",
+        "format": {
+            "type": "topojson",
+            "feature": "ne_110m_admin_0_countries"
+        }
+    },
+    "transform": [
+        {
+            "lookup": "properties.NAME",
+            "from": {
+                "data": {
+                    "url": "https://raw.githubusercontent.com/DylanTan1/fit3179-w9-hw/main/cleaned.csv"
+                },
+                "key": "country",
+                "fields": [
+                    "total_ghg",
+                    "year"
+                ]
+            }
+        },
+        {
+            "filter": {
+                "not": {
+                    "field": "properties.NAME",
+                    "oneOf": [
+                        "Kosovo",
+                        "N. Cyprus",
+                        "Somaliland",
+                        "Antarctica",
+                        "Fr. S. Antarctic Lands"
+                    ]
+                }
+            }
+        }
+    ],
+    "mark": {
+        "type": "geoshape"
+    },
+    "encoding": {
+        "color": {
+            "field": "total_ghg",
+            "type": "quantitative",
+            "scale": {
+                "scheme": "inferno",
+                "type": "log"
+            },
+            "title": "Total Greenhouse Gas Emission"
+        },
+        "tooltip": [
+            {
+                "field": "properties.NAME",
+                "type": "nominal",
+                "title": "Country"
+            },
+            {
+                "field": "total_ghg",
+                "type": "quantitative",
+                "title": "Total Greenhouse Gas"
+            }
+        ]
+    }
+}

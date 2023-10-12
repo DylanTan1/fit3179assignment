@@ -1,0 +1,78 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/DylanTan1/fit3179-w9-hw/main/cleaned.csv"
+    },
+    "title": "Comparison of different gas emission between countries",
+    "width": 800,
+    "height": 400,
+    "params": [
+        {
+            "name": "year_selected",
+            "value": 2000,
+            "bind": {
+                "input": "range",
+                "min": 2000,
+                "max": 2021,
+                "step": 1,
+                "name": "Year: "
+            }
+        }
+    ],
+    "transform": [
+        {
+            "filter": {
+                "field": "country",
+                "oneOf": [
+                    "China",
+                    "United States of America",
+                    "Russia",
+                    "Australia",
+                    "India",
+                    "Brazil"
+                ]
+            }
+        },
+        {
+            "filter": "datum.year == year_selected"
+        },
+        {
+            "fold": [
+                "co2",
+                "methane",
+                "nitrous_oxide"
+            ],
+            "as": [
+                "gas_type",
+                "value"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "size": 25
+    },
+    "encoding": {
+        "x": {
+            "field": "country",
+            "type": "ordinal",
+            "title": "Country"
+        },
+        "y": {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Gas emission(million tonnes)"
+        },
+        "xOffset": {
+            "field": "gas_type"
+        },
+        "color": {
+            "field": "gas_type",
+            "type": "nominal"
+        },
+        "column": {
+            "field": "year",
+            "type": "ordinal"
+        }
+    }
+}

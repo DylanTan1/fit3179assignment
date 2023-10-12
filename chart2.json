@@ -1,0 +1,82 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/DylanTan1/fit3179-w9-hw/main/cleaned.csv"
+    },
+    "title": "Global CO2 generation and growth",
+    "width": 800,
+    "height": 400,
+    "transform": [
+        {
+            "aggregate": [
+                {
+                    "op": "sum",
+                    "field": "co2_growth_abs",
+                    "as": "total_co2_growth"
+                },
+                {
+                    "op": "sum",
+                    "field": "co2",
+                    "as": "total_co2"
+                }
+            ],
+            "groupby": [
+                "year"
+            ]
+        }
+    ],
+    "layer": [
+        {
+            "mark": "line",
+            "encoding": {
+                "x": {
+                    "field": "year",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "total_co2",
+                    "type": "quantitative",
+                    "title": "Total CO2 Generation"
+                }
+            }
+        },
+        {
+            "mark": "bar",
+            "encoding": {
+                "x": {
+                    "field": "year",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "total_co2_growth",
+                    "type": "quantitative",
+                    "title": "Total CO2 Growth"
+                },
+                "opacity": {
+                    "value": 0.6
+                },
+                "tooltip": [
+                    {
+                        "field": "year",
+                        "type": "ordinal"
+                    },
+                    {
+                        "field": "total_co2_growth",
+                        "type": "quantitative",
+                        "title": "Total CO2 Growth(million tonnes)"
+                    },
+                    {
+                        "field": "total_co2",
+                        "type": "quantitative",
+                        "title": "Total CO2 Generation(million tonnes)"
+                    }
+                ]
+            }
+        }
+    ],
+    "resolve": {
+        "scale": {
+            "y": "independent"
+        }
+    }
+}
