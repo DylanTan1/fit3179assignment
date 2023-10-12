@@ -3,7 +3,7 @@
     "data": {
         "url": "https://raw.githubusercontent.com/DylanTan1/fit3179-w9-hw/main/cleaned.csv"
     },
-    "title": "Comparison of different gas emission between countries",
+    "title": "Comparison of different gas emission per year between countries",
     "width": 800,
     "height": 400,
     "params": [
@@ -29,7 +29,8 @@
                     "Russia",
                     "Australia",
                     "India",
-                    "Brazil"
+                    "Brazil",
+                    "Germany"
                 ]
             }
         },
@@ -38,12 +39,12 @@
         },
         {
             "fold": [
-                "co2",
+                "nitrous_oxide",
                 "methane",
-                "nitrous_oxide"
+                "co2"
             ],
             "as": [
-                "gas_type",
+                "Gas",
                 "value"
             ]
         }
@@ -58,21 +59,36 @@
             "type": "ordinal",
             "title": "Country"
         },
+        "xOffset":{"field":"Gas"},
         "y": {
             "field": "value",
             "type": "quantitative",
             "title": "Gas emission(million tonnes)"
         },
-        "xOffset": {
-            "field": "gas_type"
-        },
         "color": {
-            "field": "gas_type",
+            "field": "Gas",
             "type": "nominal"
         },
         "column": {
-            "field": "year",
+            "field": "Year",
             "type": "ordinal"
-        }
+        },
+        "tooltip":[
+            {
+                "field":"nitrous_oxide",
+                "type": "quantitative",
+                "title":"Nitrous oxide(million tonnes): "
+            },
+            {
+                "field": "methane",
+                "type": "quantitative",
+                "title": "Methane(million tonnes): "
+            },
+            {
+                "field": "co2",
+                "type": "quantitative",
+                "title": "Carbon dioxide(million tonnes): "
+            }
+        ]
     }
 }
