@@ -3,7 +3,7 @@
     "config": {
         "background": "lightblue"
     },
-    "title": "Total greenhouse gas emission in 2021(million tonnes)",
+    "title": "Total greenhouse gas emission in 2021",
     "width": 800,
     "height": 400,
     "projection": {
@@ -21,7 +21,7 @@
             "lookup": "properties.NAME",
             "from": {
                 "data": {
-                    "url": "https://raw.githubusercontent.com/DylanTan1/fit3179-w9-hw/main/cleaned.csv"
+                    "url": "https://raw.githubusercontent.com/DylanTan1/fit3179assignment/main/cleaned.csv"
                 },
                 "key": "country",
                 "fields": [
@@ -46,29 +46,30 @@
         }
     ],
     "mark": {
-        "type": "geoshape"
-    },
-    "encoding": {
-        "color": {
-            "field": "total_ghg",
-            "type": "quantitative",
-            "scale": {
-                "scheme": "inferno",
-                "type": "log"
-            },
-            "title": "Total Greenhouse Gas Emission"
+            "type": "geoshape"
         },
-        "tooltip": [
-            {
-                "field": "properties.NAME",
-                "type": "nominal",
-                "title": "Country"
-            },
-            {
+        "encoding": {
+            "color": {
                 "field": "total_ghg",
                 "type": "quantitative",
-                "title": "Total Greenhouse Gas"
-            }
-        ]
-    }
+                "scale": {
+                    "scheme": "inferno",
+                    "type": "log",
+                    "reverse":true
+                },
+                "title": "Total Greenhouse Gas Emission"
+            },
+            "tooltip": [
+                {
+                    "field": "properties.NAME",
+                    "type": "nominal",
+                    "title": "Country"
+                },
+                {
+                    "field": "total_ghg",
+                    "type": "quantitative",
+                    "title": "Total Greenhouse Gas(million tonnes)"
+                }
+            ]
+        }
 }

@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
-        "url": "https://raw.githubusercontent.com/DylanTan1/fit3179-w9-hw/main/cleaned.csv"
+        "url": "https://raw.githubusercontent.com/DylanTan1/fit3179assignment/main/cleaned.csv"
     },
     "title": "Top 10 biggest contributors to global warming",
     "width": 800,
@@ -44,7 +44,8 @@
         },
         "color": {
             "field": "country",
-            "type": "nominal"
+            "type": "nominal",
+            "legend":{"labelFontSize":15}
         }
     }
 }
